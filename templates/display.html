@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>View image</title>
+<h1> Supriya saraogi 1001159497</h1>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.5/js/jquery.tablesorter.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function()
+    {
+        $("#suppitable").tablesorter( {sortList: [[0,0], [1,0]]});
+    }
+);
+ </script>
+<table id="suppitable" border="1" style="...">
+    <thead>
+    <tr>
+        <th>Filename</th>
+        <th>Priority</th>
+        <th>File</th>
+        <th>comments</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for item in lists%}
+    <tr>
+        <td>{{ item.file_name }}</td>
+        <td>{{ item.priority }}</td>
+        {% if item.file_type=="image" %}
+        <td><img src={{ item.image }} style="width=508px;height:328px;"></img></td>
+        {% else %}
+        <td>{{ item.image }}</td>
+        {% endif %}
+        <td>{{item.com}}</td>
+        <td>{{item.uploadDate}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<br>
+<form action="/delete" method="post">
+Delete Image
+Select: <select name="images">
+{%for item in lists%}
+  <option value={{item.file_name}}>{{item.file_name}}</option>
+{% endfor %}
+</select>
+<input type="submit" name="Submit" value ="delete">
+<button onclick="goBack()">Back</button>
+<form action="/fetchmine" method="POST">
+<h2>Enter a Word:</h2>
+<input type="text" name="Submit" value ="Submit">
+<button class="button button-block"/>Submit</button>
+</form>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+</form>
+
+
+<form action="{{ url_for('logout') }}" method="post">
+   <input type="submit" name="Submit" value ="logout" onclick="{{url_for('logout')}}"> 
+  </form>
+</body>
+</html>

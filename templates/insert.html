@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload image</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body>
+<h1>{{output}}</h1>
+<img src="Cloud.jpg" style="width=508px;height:328px;"></img><br>
+<form action="/fetchmine" method="POST">
+
+My Images:
+<input type="submit" name="Submit" value ="view">
+</form><br>
+<br>
+<form action="/fetch" method="POST">
+All Images:
+<input type="submit" name="Submit" value ="view">
+</form>
+<button onclick="goBack()">Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+</body>
+</html>
